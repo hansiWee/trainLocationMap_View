@@ -3,10 +3,18 @@
 <head>
   <title>Train Location Map</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
-  <div id="map" style="height: 500px;"></div>
-  <script src="map.js"></script> <!-- Link to JavaScript file-->
+  <div id="container">
+    <div id="sidebar">
+      <h1>Train Location Viewer</h1>
+      <div id="status">Loading train location...</div>
+      <button id="refreshButton">Refresh Location</button>
+    </div>
+    <div id="map"></div>
+  </div>
+  <script src="map.js"></script>
 </body>
 </html>

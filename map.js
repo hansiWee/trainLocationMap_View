@@ -7,6 +7,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let trainMarker;
 
 async function updateTrainLocation(trainId) {
+  const status = document.getElementById('status');
   try {
     const response = await fetch(`http://localhost:3000/train/${trainId}/location`);
     if (!response.ok) {
@@ -24,10 +25,17 @@ async function updateTrainLocation(trainId) {
     }
 
     map.setView([latitude, longitude], 13); // Adjust the view to the train's location
+    status.textContent = 'Train location updated successfully';
   } catch (error) {
     console.error('Error fetching train location:', error);
+    status.textContent = 'Error fetching train location';
   }
 }
 
-// Call the function with a specific train ID
+document.getElementById('refreshButton').addEventListener('click', () => {
+  updateTrainLocation(12);
+});
+
+// Initial call and periodic updates
 updateTrainLocation(12);
+setInterval(() => updateTrainLocation(12), 10000);
